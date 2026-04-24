@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Books Catalog</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            text-align: center;
+            background-color:#f4f4f4;
+        }
+        table{
+            border-collapse:collapse;
+            width:100%;
+            margin-top:20px;
+        }
+        th{
+            background-color:#333;
+            color:white;
+        }
+        td{
+            padding: 10px;
+        }
+        tr:nth-child(even){
+            background-color:#eee;
+        }
+        .available {
+            color: green;
+            font-weight:bold;
+        }
+        .borrowed{
+            color: red;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Books Catalog</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th> Cover</th>
+        <th> Book Name</th>
+        <th> Author</th>
+        <th> Status</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr onclick="changeStatus(this)">
+        <td><img src="https://via.placeholder.com/50x70" style="width:50px"></td>
+        <td>Programming Basics</td>
+        <td>Haneen AbelHadyy</td>
+        <td class="available">available</td>
+    </tr>
+
+    <tr onclick="changeStatus(this)">
+        <td><img src="https://via.placeholder.com/50x70" style="width:50px"></td>
+        <td>Database Systems</td>
+        <td>Reda Khaled</td>
+        <td class="borrowed">borrowed</td>
+    </tr>
+
+
+    <tr onclick="changeStatus(this)">
+        <td><img src="https://via.placeholder.com/50x70" style="width:50px"></td>
+        <td>Artificial Intelligence</td>
+        <td>Nevein Ramadan</td>
+        <td class="available">available</td>
+    </tr>
+
+
+    <tr onclick="changeStatus(this)">
+        <td><img src="https://via.placeholder.com/50x70" style="width:50px"></td>
+        <td>WEB Development</td>
+        <td>AbulAllah Ahmed</td>
+        <td class="borrowed">borrowed</td>
+    </tr>
+
+
+    <tr onclick="changeStatus(this)">
+        <td><img src="https://via.placeholder.com/50x70" style="width:50px"></td>
+        <td>Cyber Security</td>
+        <td>Mohamed Fouad</td>
+        <td class="available">available</td>
+    </tr>
+
+
+    </tbody>
+</table>
+<script>
+    function changeStatus(row) {
+
+        let status = row.children[3];
+
+        if (status.innerText == "available") {
+            status.innerText = "borrowed";
+            status.className = "borrowed";
+        } else {
+            status.innerText = "available";
+            status.className = "available";
+        }
+
+    }
+</script>
+</body>
+</html>

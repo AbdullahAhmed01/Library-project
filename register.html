@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px; margin: 0; }
+        .main-container { background-color: white; width: 480px; margin: auto; padding: 25px; border: 2px solid #3498db; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); }
+        legend { color: #3498db; font-weight: bold; font-size: 20px; }
+        .box { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="email"], input[type="password"], input[type="number"], select { 
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; 
+        }
+        
+        .error-field { border: 2px solid red !important; background-color: #fff0f0; }
+        .error-text { border: 2px solid red !important; padding: 5px; border-radius: 5px; }
+
+        .btn-submit { background-color: #3498db; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; margin-top: 15px; }
+        .btn-submit:hover { background-color: #2980b9; }
+
+        .link-section { text-align: center; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+        .link-section a { color: #3498db; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <form id="registerForm">
+        <fieldset>
+            <legend>Join Our Library</legend>
+
+            <div class="box">
+                <label>Full Name:</label>
+                <input type="text" id="uName">
+            </div>
+
+            <div class="box">
+                <label>Age:</label>
+                <input type="number" id="uAge">
+            </div>
+
+            <div id="genderBox" class="box">
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <div class="box">
+                <label>Governorate:</label>
+                <select id="uCity">
+                    <option value="">-- Select Your City --</option>
+                    <option value="Cairo">Cairo</option>
+                    <option value="Alexandria">Alexandria</option>
+                    <option value="Giza">Giza</option>
+                    <option value="Mansoura">Mansoura</option>
+                </select>
+            </div>
+
+            <div id="bookBox" class="box">
+                <label>Favorite Topics:</label>
+                <input type="checkbox" name="books" value="Programming"> Programming
+                <input type="checkbox" name="books" value="Tech"> Technology
+                <input type="checkbox" name="books" value="Science"> Science
+            </div>
+
+            <div class="box">
+                <label>Email Address:</label>
+                <input type="email" id="uEmail">
+            </div>
+
+            <div class="box">
+                <label>Password:</label>
+                <input type="password" id="uPass">
+            </div>
+
+            <button type="button" class="btn-submit" onclick="processRegister()">Create Account</button>
+
+            <div class="link-section">
+                <a href="about-contact.html">About Us & Contact</a>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script>
+    function processRegister() {
+        var name = document.getElementById("uName");
+        var age = document.getElementById("uAge");
+        var city = document.getElementById("uCity");
+        var email = document.getElementById("uEmail");
+        var pass = document.getElementById("uPass");
+        var genderBox = document.getElementById("genderBox");
+
+        // Reset Styles
+        name.classList.remove("error-field");
+        age.classList.remove("error-field");
+        city.classList.remove("error-field");
+        email.classList.remove("error-field");
+        pass.classList.remove("error-field");
+        genderBox.classList.remove("error-text");
+
+        // Logic for Radio (Gender)
+        var genderVal = "";
+        var radios = document.getElementsByName("gender");
+        for(var i=0; i<radios.length; i++) {
+            if(radios[i].checked) genderVal = radios[i].value;
+        }
+
+        // Logic for Checkboxes (Books)
+        var selectedBooks = [];
+        var checks = document.getElementsByName("books");
+        for(var i=0; i<checks.length; i++) {
+            if(checks[i].checked) selectedBooks.push(checks[i].value);
+        }
+
+        var hasError = false;
+        if (name.value == "") { name.classList.add("error-field"); hasError = true; }
+        if (age.value == "") { age.classList.add("error-field"); hasError = true; }
+        if (city.value == "") { city.classList.add("error-field"); hasError = true; }
+        if (email.value == "") { email.classList.add("error-field"); hasError = true; }
+        if (pass.value == "") { pass.classList.add("error-field"); hasError = true; }
+        if (genderVal == "") { genderBox.classList.add("error-text"); hasError = true; }
+
+        if (hasError) {
+            alert("Please fill all required fields in Red!");
+            return;
+        }
+
+        // Security Check
+        var savedEmail = localStorage.getItem("user_email");
+        if (savedEmail != null) {
+            if (email.value == savedEmail) {
+                alert("Account already exists with this email.");
+            } else {
+                alert("This device is already used by another user.");
+            }
+        } else {
+            // Saving Data (Section 6 & 7)
+            localStorage.setItem("user_name", name.value);
+            localStorage.setItem("user_email", email.value);
+            localStorage.setItem("user_books", selectedBooks.join(", "));
+            
+            alert("Success! Welcome " + name.value + ". Your profile is ready.");
+        }
+    }
+</script>
+
+</body>
+</html>

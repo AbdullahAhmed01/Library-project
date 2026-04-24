@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library - About & Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 20px;
+        }
+        .main-card {
+            background-color: white;
+            width: 550px;
+            margin: auto;
+            padding: 30px;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+        .section { display: none; margin-top: 25px; padding-top: 20px; border-top: 2px solid #eee; }
+
+        /* تنسيق فريق العمل */
+        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; margin: 20px 0; }
+        .member { background: #e8f4fd; padding: 10px; border-left: 4px solid #3498db; border-radius: 5px; }
+        .member b { color: #2c3e50; }
+
+        /* تنسيق فورم التواصل */
+        .contact-form input, .contact-form textarea {
+            width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-family: Arial;
+        }
+        .error-field { border: 2px solid red !important; background-color: #fff0f0; }
+
+        button {
+            padding: 10px 20px; margin: 5px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
+        button:hover { background-color: #2980b9; }
+        #welcomeMsg { font-size: 18px; color: #3498db; margin-bottom: 20px; font-weight: bold; }
+    </style>
+</head>
+
+<body onload="checkUser()">
+
+<div class="main-card">
+    <h1>Library System 📚</h1>
+    <div id="welcomeMsg"></div>
+
+    <button onclick="showAbout()">About Us</button>
+    <button onclick="showContact()">Contact Us</button>
+    <button onclick="location.href='register.html'" style="background-color: #95a5a6;">Back to Register</button>
+
+    <div id="about" class="section">
+        <h2>About Our Library</h2>
+        <p>We aim to provide a digital environment for students to access engineering and technical resources easily.</p>
+
+        <h3>Development Team</h3>
+        <div class="team-grid">
+            <div class="member"><b>HANEEN MUHAMMED</b><br>Project Leader & Register Expert</div>
+            <div class="member"><b>REDA KHALED</b><br>Database Manager</div>
+            <div class="member"><b>NEVEN RAMADAN</b><br>UI/UX Designer</div>
+            <div class="member"><b>ABDALLAH AHMED</b><br>Backend Developer</div>
+            <div class="member"><b>MUHAMMED FOUAD</b><br>System Analyst</div>
+        </div>
+    </div>
+
+    <div id="contact" class="section">
+        <h2>Get In Touch</h2>
+        <div class="contact-form">
+            <input type="text" id="cName" placeholder="Your Full Name">
+            <input type="email" id="cEmail" placeholder="Your Email Address">
+            <input type="text" id="cSubject" placeholder="Subject">
+            <textarea id="cMessage" rows="4" placeholder="Write your message here..."></textarea>
+            <button onclick="sendMail()">SEND MESSAGE</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkUser() {
+        var name = localStorage.getItem("user_name");
+        if (name != null) {
+            document.getElementById("welcomeMsg").innerHTML = "Welcome Back, " + name + "!";
+        }
+    }
+
+    function showAbout() {
+        document.getElementById("about").style.display = "block";
+        document.getElementById("contact").style.display = "none";
+    }
+
+    function showContact() {
+        document.getElementById("about").style.display = "none";
+        document.getElementById("contact").style.display = "block";
+    }
+
+    function sendMail() {
+        var n = document.getElementById("cName");
+        var e = document.getElementById("cEmail");
+        var m = document.getElementById("cMessage");
+
+        // Reset borders
+        n.classList.remove("error-field");
+        e.classList.remove("error-field");
+        m.classList.remove("error-field");
+
+        if(n.value == "" || e.value == "" || m.value == "") {
+            if(n.value == "") n.classList.add("error-field");
+            if(e.value == "") e.classList.add("error-field");
+            if(m.value == "") m.classList.add("error-field");
+            alert("Please fill all fields to send your message!");
+        } else {
+            alert("Thank you " + n.value + ", your message has been sent successfully!");
+            // Clear form
+            n.value = ""; e.value = ""; m.value = "";
+        }
+    }
+</script>
+
+</body>
+</html>
