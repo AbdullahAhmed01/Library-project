@@ -1,56 +1,228 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page - Library Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/navbar.css" />
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px; margin: 0; }
-        .main-container { background-color: white; width: 480px; margin: auto; padding: 25px; border: 2px solid #3498db; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0,0,0,0.1); }
-        legend { color: #3498db; font-weight: bold; font-size: 20px; }
-        .box { margin-bottom: 12px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input[type="text"], input[type="email"], input[type="password"], input[type="number"], select { 
-            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; 
+        /* simple student style */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
         }
-        
-        .error-field { border: 2px solid red !important; background-color: #fff0f0; }
-        .error-text { border: 2px solid red !important; padding: 5px; border-radius: 5px; }
+        .main-container {
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            padding: 25px;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        legend {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .box {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-        .btn-submit { background-color: #3498db; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; width: 100%; font-size: 16px; margin-top: 15px; }
-        .btn-submit:hover { background-color: #2980b9; }
+        .error-field {
+            border: 2px solid red !important;
+            background-color: #ffe0e0;
+        }
+        .error-text {
+            border: 2px solid red !important;
+            padding: 8px;
+            border-radius: 5px;
+        }
 
-        .link-section { text-align: center; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
-        .link-section a { color: #3498db; text-decoration: none; font-weight: bold; }
+        .date-row {
+            display: flex;
+            gap: 10px;
+        }
+        .date-col {
+            flex: 1;
+        }
+        .date-col input, .date-col select {
+            width: 100%;
+            padding: 8px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .radio-group label, .checkbox-group label {
+            font-weight: normal;
+            display: inline;
+        }
+
+        .categories-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .categories-grid label {
+            font-weight: normal;
+            display: inline;
+        }
+
+        .btn-submit {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-login-redirect {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .btn-login-redirect:hover {
+            background-color: #219a52;
+        }
+
+        .link-section {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+        }
+        .link-section a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .small-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            display: block;
+        }
+        .req-star {
+            color: red;
+        }
+        .separator {
+            margin: 15px 0 5px;
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+        }
     </style>
 </head>
 <body>
+<!-- Header & Navigation -->
+<header class="header">
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <h1>EELU Library</h1>
+        </div>
+        <ul class="navbar-menu">
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="books.html" class="nav-link">Books</a></li>
+            <li><a href="about-contact.html" class="nav-link">About & Contact</a></li>
+            <li><a href="login.html" class="nav-link">Login</a></li>
+        </ul>
+    </nav>
 
 <div class="main-container">
     <form id="registerForm">
         <fieldset>
             <legend>Join Our Library</legend>
 
+            <!-- Full Name -->
             <div class="box">
-                <label>Full Name:</label>
-                <input type="text" id="uName">
+                <label>Full Name <span class="req-star">*</span></label>
+                <input type="text" id="uName" placeholder="Enter your full name">
             </div>
 
+            <!-- Date of Birth (Day - Month - Year) -->
             <div class="box">
-                <label>Age:</label>
-                <input type="number" id="uAge">
+                <label>Date of Birth <span class="req-star">*</span></label>
+                <div class="date-row">
+                    <div class="date-col">
+                        <input type="number" id="dobDay" placeholder="Day" min="1" max="31">
+                    </div>
+                    <div class="date-col">
+                        <select id="dobMonth">
+                            <option value="">Month</option>
+                            <option value="1">Jan</option>
+                            <option value="2">Feb</option>
+                            <option value="3">Mar</option>
+                            <option value="4">Apr</option>
+                            <option value="5">May</option>
+                            <option value="6">Jun</option>
+                            <option value="7">Jul</option>
+                            <option value="8">Aug</option>
+                            <option value="9">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                        </select>
+                    </div>
+                    <div class="date-col">
+                        <input type="number" id="dobYear" placeholder="Year" min="1920" max="2026">
+                    </div>
+                </div>
+                <span class="small-hint">* Age must be at least 12 years old</span>
+                <input type="hidden" id="computedAgeField">
             </div>
 
+            <!-- Gender -->
             <div id="genderBox" class="box">
-                <label>Gender:</label>
-                <input type="radio" name="gender" value="Male"> Male
-                <input type="radio" name="gender" value="Female"> Female
+                <label>Gender <span class="req-star">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Male"> Male</label>
+                    <label><input type="radio" name="gender" value="Female"> Female</label>
+                </div>
             </div>
 
+            <!-- Governorate -->
             <div class="box">
-                <label>Governorate:</label>
+                <label>Governorate <span class="req-star">*</span></label>
                 <select id="uCity">
-                    <option value="">-- Select Your City --</option>
+                    <option value="">-- Select --</option>
                     <option value="Cairo">Cairo</option>
                     <option value="Alexandria">Alexandria</option>
                     <option value="Giza">Giza</option>
@@ -58,92 +230,220 @@
                 </select>
             </div>
 
+            <!-- Favorite Topics (Expanded to 10 categories) -->
             <div id="bookBox" class="box">
                 <label>Favorite Topics:</label>
-                <input type="checkbox" name="books" value="Programming"> Programming
-                <input type="checkbox" name="books" value="Tech"> Technology
-                <input type="checkbox" name="books" value="Science"> Science
+                <div class="categories-grid">
+                    <label><input type="checkbox" name="books" value="Programming"> Programming</label>
+                    <label><input type="checkbox" name="books" value="Technology"> Technology</label>
+                    <label><input type="checkbox" name="books" value="Science"> Science</label>
+                    <label><input type="checkbox" name="books" value="Fantasy"> Fantasy</label>
+                    <label><input type="checkbox" name="books" value="History"> History</label>
+                    <label><input type="checkbox" name="books" value="Art & Design"> Art & Design</label>
+                    <label><input type="checkbox" name="books" value="Philosophy"> Philosophy</label>
+                    <label><input type="checkbox" name="books" value="Biography"> Biography</label>
+                    <label><input type="checkbox" name="books" value="Self Development"> Self Development</label>
+                    <label><input type="checkbox" name="books" value="Literature"> Literature</label>
+                </div>
             </div>
 
+            <!-- Email Address -->
             <div class="box">
-                <label>Email Address:</label>
-                <input type="email" id="uEmail">
+                <label>Email Address <span class="req-star">*</span></label>
+                <input type="email" id="uEmail" placeholder="example@domain.com">
             </div>
 
+            <!-- Password -->
             <div class="box">
-                <label>Password:</label>
-                <input type="password" id="uPass">
+                <label>Password <span class="req-star">*</span></label>
+                <input type="password" id="uPass" placeholder="Enter password">
             </div>
 
             <button type="button" class="btn-submit" onclick="processRegister()">Create Account</button>
 
+            <div class="separator">━━━━━━━━━━━━━━━━━━━━</div>
+
+            <!-- New button: if user already has an account, go to login page -->
+            <button type="button" class="btn-login-redirect" onclick="redirectToLogin()">🔓 Already have an account? Login</button>
+
             <div class="link-section">
-                <a href="about-contact.html">About Us & Contact</a>
+                <a href="ABOUT & CONTACT US.HTML">About Us & Contact</a>
             </div>
         </fieldset>
     </form>
 </div>
 
 <script>
+    // Function to redirect to login page
+    function redirectToLogin() {
+        window.location.href = "login.html";
+    }
+
+    // Function to calculate age from date of birth
+    function calculateAge(day, month, year) {
+        if (!day || !month || !year) return null;
+        var birthDate = new Date(year, month - 1, day);
+        var today = new Date();
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        if (birthDate.getDate() != day || birthDate.getMonth() != (month-1)) return null;
+        return age;
+    }
+
+    // Function to validate age
+    function checkAge() {
+        var day = document.getElementById("dobDay").value;
+        var month = document.getElementById("dobMonth").value;
+        var year = document.getElementById("dobYear").value;
+
+        if (day == "" || month == "" || year == "") {
+            return { valid: false, error: "incomplete" };
+        }
+
+        var d = parseInt(day);
+        var m = parseInt(month);
+        var y = parseInt(year);
+
+        if (d < 1 || d > 31) return { valid: false, error: "invalid_day" };
+        if (m < 1 || m > 12) return { valid: false, error: "invalid_month" };
+        if (y < 1920 || y > new Date().getFullYear()) return { valid: false, error: "invalid_year" };
+
+        var age = calculateAge(d, m, y);
+        if (age === null) return { valid: false, error: "invalid_date" };
+        if (age < 12) return { valid: false, error: "too_young" };
+        if (age > 100) return { valid: false, error: "too_old" };
+
+        return { valid: true, age: age };
+    }
+
+    // Main registration function
     function processRegister() {
+        // Get elements
         var name = document.getElementById("uName");
-        var age = document.getElementById("uAge");
         var city = document.getElementById("uCity");
         var email = document.getElementById("uEmail");
         var pass = document.getElementById("uPass");
         var genderBox = document.getElementById("genderBox");
 
-        // Reset Styles
+        var dobDay = document.getElementById("dobDay");
+        var dobMonth = document.getElementById("dobMonth");
+        var dobYear = document.getElementById("dobYear");
+
+        // Remove old error styles
         name.classList.remove("error-field");
-        age.classList.remove("error-field");
         city.classList.remove("error-field");
         email.classList.remove("error-field");
         pass.classList.remove("error-field");
         genderBox.classList.remove("error-text");
+        dobDay.classList.remove("error-field");
+        dobMonth.classList.remove("error-field");
+        dobYear.classList.remove("error-field");
 
-        // Logic for Radio (Gender)
+        // Get gender value
         var genderVal = "";
         var radios = document.getElementsByName("gender");
-        for(var i=0; i<radios.length; i++) {
-            if(radios[i].checked) genderVal = radios[i].value;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) genderVal = radios[i].value;
         }
 
-        // Logic for Checkboxes (Books)
+        // Get selected books
         var selectedBooks = [];
         var checks = document.getElementsByName("books");
-        for(var i=0; i<checks.length; i++) {
-            if(checks[i].checked) selectedBooks.push(checks[i].value);
+        for (var i = 0; i < checks.length; i++) {
+            if (checks[i].checked) selectedBooks.push(checks[i].value);
         }
 
+        // Validate age
+        var ageCheck = checkAge();
+        var ageValid = ageCheck.valid;
+
         var hasError = false;
+
         if (name.value == "") { name.classList.add("error-field"); hasError = true; }
-        if (age.value == "") { age.classList.add("error-field"); hasError = true; }
+        if (!ageValid) {
+            dobDay.classList.add("error-field");
+            dobMonth.classList.add("error-field");
+            dobYear.classList.add("error-field");
+            hasError = true;
+        }
         if (city.value == "") { city.classList.add("error-field"); hasError = true; }
         if (email.value == "") { email.classList.add("error-field"); hasError = true; }
         if (pass.value == "") { pass.classList.add("error-field"); hasError = true; }
         if (genderVal == "") { genderBox.classList.add("error-text"); hasError = true; }
 
         if (hasError) {
-            alert("Please fill all required fields in Red!");
+            var msg = "Please fill all required fields:\n";
+            if (name.value == "") msg += "- Full Name\n";
+            if (!ageValid) {
+                if (ageCheck.error == "too_young") msg += "- Age must be at least 12 years old\n";
+                else if (ageCheck.error == "invalid_date") msg += "- Invalid date (e.g., 31 February)\n";
+                else if (ageCheck.error == "incomplete") msg += "- Complete Date of Birth\n";
+                else msg += "- Valid Date of Birth required (age 12-100)\n";
+            }
+            if (city.value == "") msg += "- Governorate\n";
+            if (email.value == "") msg += "- Email\n";
+            if (pass.value == "") msg += "- Password\n";
+            if (genderVal == "") msg += "- Gender\n";
+            alert(msg);
             return;
         }
 
-        // Security Check
+        // Check localStorage (same as original logic)
         var savedEmail = localStorage.getItem("user_email");
         if (savedEmail != null) {
             if (email.value == savedEmail) {
-                alert("Account already exists with this email.");
+                // Account already exists with this email -> ask to go to login
+                var goToLogin = confirm("Account already exists with this email. Do you want to go to Login page?");
+                if (goToLogin) {
+                    window.location.href = "login.html";
+                }
             } else {
                 alert("This device is already used by another user.");
             }
         } else {
-            // Saving Data (Section 6 & 7)
+            // Save data
             localStorage.setItem("user_name", name.value);
             localStorage.setItem("user_email", email.value);
             localStorage.setItem("user_books", selectedBooks.join(", "));
-            
-            alert("Success! Welcome " + name.value + ". Your profile is ready.");
+
+            // Save extra data
+            localStorage.setItem("user_age", ageCheck.age);
+            localStorage.setItem("user_gender", genderVal);
+            localStorage.setItem("user_city", city.value);
+
+            alert("Success! Welcome " + name.value + " (Age: " + ageCheck.age + "). Your profile is ready.");
         }
+    }
+
+    // Fix day if it exceeds month days
+    function fixDay() {
+        var day = document.getElementById("dobDay").value;
+        var month = document.getElementById("dobMonth").value;
+        var year = document.getElementById("dobYear").value;
+        if (!month || !year || !day) return;
+        var d = parseInt(day);
+        var m = parseInt(month);
+        var y = parseInt(year);
+        if (isNaN(d) || isNaN(m) || isNaN(y)) return;
+        var daysInMonth = new Date(y, m, 0).getDate();
+        if (daysInMonth && d > daysInMonth) {
+            document.getElementById("dobDay").value = daysInMonth;
+        }
+        if (d < 1) document.getElementById("dobDay").value = 1;
+    }
+
+    document.getElementById("dobDay")?.addEventListener("input", fixDay);
+    document.getElementById("dobMonth")?.addEventListener("change", fixDay);
+    document.getElementById("dobYear")?.addEventListener("input", fixDay);
+
+    // Set max year
+    var yearField = document.getElementById("dobYear");
+    if (yearField) {
+        yearField.max = new Date().getFullYear();
+        yearField.min = 1920;
     }
 </script>
 

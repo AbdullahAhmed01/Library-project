@@ -1,47 +1,272 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Library - About & Contact</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/navbar.css" />
+    <title>Library - About & Contact Us</title>
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f0f7 0%, #d4e0ec 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
+
         .main-card {
-            background-color: white;
-            width: 550px;
-            margin: auto;
-            padding: 30px;
-            border: 2px solid #3498db;
-            border-radius: 15px;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
         }
-        .section { display: none; margin-top: 25px; padding-top: 20px; border-top: 2px solid #eee; }
 
-        /* تنسيق فريق العمل */
-        .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; margin: 20px 0; }
-        .member { background: #e8f4fd; padding: 10px; border-left: 4px solid #3498db; border-radius: 5px; }
-        .member b { color: #2c3e50; }
-
-        /* تنسيق فورم التواصل */
-        .contact-form input, .contact-form textarea {
-            width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-family: Arial;
+        .main-card:hover {
+            transform: translateY(-5px);
         }
-        .error-field { border: 2px solid red !important; background-color: #fff0f0; }
 
-        button {
-            padding: 10px 20px; margin: 5px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
+        /* header section */
+        .header {
+            background: linear-gradient(135deg, #2c7cb6, #1a4f73);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
         }
-        button:hover { background-color: #2980b9; }
-        #welcomeMsg { font-size: 18px; color: #3498db; margin-bottom: 20px; font-weight: bold; }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        #welcomeMsg {
+            background: #e9f0f5;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            color: #1a4f73;
+            border-bottom: 1px solid #cbdde9;
+        }
+
+        /* button bar */
+        .button-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f9fbfd;
+            border-bottom: 1px solid #e2edf2;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #2c7cb6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f6392;
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        /* sections */
+        .section {
+            display: none;
+            padding: 25px 30px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .section h2 {
+            color: #1a4f73;
+            border-left: 5px solid #2c7cb6;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .section h3 {
+            color: #2c3e50;
+            margin: 20px 0 10px 0;
+            font-size: 18px;
+        }
+
+        /* team grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .member {
+            background: #f0f8ff;
+            padding: 12px 15px;
+            border-left: 4px solid #2c7cb6;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .member:hover {
+            background: #e3f0fa;
+            transform: translateX(5px);
+        }
+
+        .member b {
+            color: #1a4f73;
+            font-size: 16px;
+        }
+
+        .member small {
+            display: block;
+            color: #5f7f9c;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        /* contact info cards */
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-card {
+            background: #f9fbfd;
+            padding: 15px;
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid #e2edf2;
+        }
+
+        .info-card:hover {
+            background: #eef4fa;
+            transform: translateY(-3px);
+        }
+
+        .info-card .icon {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .info-card a {
+            text-decoration: none;
+            color: #2c7cb6;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        .info-card p {
+            margin-top: 5px;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+
+        /* contact form */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #2c7cb6;
+            box-shadow: 0 0 0 3px rgba(44,124,182,0.1);
+        }
+
+        .error-field {
+            border: 2px solid #e53e3e !important;
+            background-color: #fff5f5 !important;
+        }
+
+        .btn-send {
+            background: linear-gradient(95deg, #27ae60, #1e8449);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-send:hover {
+            background: linear-gradient(95deg, #1e8449, #166534);
+            transform: scale(1.01);
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cbdde9, transparent);
+        }
+
+        @media (max-width: 550px) {
+            .section { padding: 20px; }
+            .button-bar { gap: 10px; }
+            .btn { padding: 8px 16px; font-size: 13px; }
+        }
     </style>
 </head>
-
-<body onload="checkUser()">
+<body>
 <!-- Header & Navigation -->
 <header class="header">
     <nav class="navbar">
@@ -55,38 +280,91 @@
             <li><a href="login.html" class="nav-link">Login</a></li>
         </ul>
     </nav>
-</header>
 
 <div class="main-card">
-    <h1>Library System 📚</h1>
-    <div id="welcomeMsg"></div>
-
-    <button onclick="showAbout()">About Us</button>
-    <button onclick="showContact()">Contact Us</button>
-    <button onclick="location.href='register.html'" style="background-color: #95a5a6;">Back to Register</button>
-
-    <div id="about" class="section">
-        <h2>About Our Library</h2>
-        <p>We aim to provide a digital environment for students to access engineering and technical resources easily.</p>
-
-        <h3>Development Team</h3>
-        <div class="team-grid">
-            <div class="member"><b>HANEEN MUHAMMED</b><br>Project Leader & Register Expert</div>
-            <div class="member"><b>REDA KHALED</b><br>Database Manager</div>
-            <div class="member"><b>NEVEN RAMADAN</b><br>UI/UX Designer</div>
-            <div class="member"><b>ABDALLAH AHMED</b><br>Backend Developer</div>
-            <div class="member"><b>MUHAMMED FOUAD</b><br>System Analyst</div>
-        </div>
+    <div class="header">
+        <h1>📚 Library Hub</h1>
+        <p>Knowledge & Innovation Hub</p>
     </div>
 
+    <div id="welcomeMsg"></div>
+
+    <div class="button-bar">
+        <button class="btn btn-primary" onclick="showAbout()">📖 About Us</button>
+        <button class="btn btn-primary" onclick="showContact()">📞 Contact Us</button>
+        <button class="btn btn-secondary" onclick="location.href='register.html'">🔙 Back to Register</button>
+    </div>
+
+    <!-- About Us Section -->
+    <div id="about" class="section">
+        <h2>📖 About Our Library</h2>
+        <p style="line-height: 1.6; color: #2c3e50;">We provide a smart digital environment for students and researchers to access engineering, technical, and scientific resources easily. Our mission is to empower learning through technology and collaboration.</p>
+
+        <h3>👥 Development Team</h3>
+        <div class="team-grid">
+            <div class="member"><b>HANEEN MUHAMMED</b><br>Project Leader & Register Expert<small>📌 Manages user registration</small></div>
+            <div class="member"><b>REDA KHALED</b><br>Database Manager<small>🗄️ Handles data storage</small></div>
+            <div class="member"><b>NEVEN RAMADAN</b><br>UI/UX Designer<small>🎨 Beautiful interface design</small></div>
+            <div class="member"><b>ABDALLAH AHMED</b><br>Backend Developer<small>⚙️ Core logic & APIs</small></div>
+            <div class="member"><b>MUHAMMED FOUAD</b><br>System Analyst<small>📊 System requirements</small></div>
+        </div>
+
+        <h3>📍 Location</h3>
+        <p style="background: #e8f4fd; padding: 10px; border-radius: 12px;">🏢 Cairo, Egypt - Library Street, Knowledge Tower, 5th Floor</p>
+    </div>
+
+    <!-- Contact Us Section -->
     <div id="contact" class="section">
-        <h2>Get In Touch</h2>
+        <h2>📞 Get In Touch</h2>
+
+        <!-- Social & Contact Links (NEW) -->
+        <div class="contact-info-grid">
+            <div class="info-card">
+                <span class="icon">📧</span>
+                <a href="mailto:library@example.com">library@example.com</a>
+                <p>Email us anytime</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">📱</span>
+                <a href="tel:+201234567890">+20 123 456 7890</a>
+                <p>Support Hotline</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">💬</span>
+                <a href="https://wa.me/201234567890" target="_blank">WhatsApp</a>
+                <p>Chat with us</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">🐦</span>
+                <a href="https://twitter.com/libraryhub" target="_blank">Twitter/X</a>
+                <p>Follow us</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">📘</span>
+                <a href="https://facebook.com/libraryhub" target="_blank">Facebook Page</a>
+                <p>Like & share</p>
+            </div>
+            <div class="info-card">
+                <span class="icon">🔗</span>
+                <a href="#">Telegram: @LibrarySupport</a>
+                <p>Telegram channel</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <h3>✉️ Send us a direct message</h3>
         <div class="contact-form">
-            <input type="text" id="cName" placeholder="Your Full Name">
-            <input type="email" id="cEmail" placeholder="Your Email Address">
-            <input type="text" id="cSubject" placeholder="Subject">
-            <textarea id="cMessage" rows="4" placeholder="Write your message here..."></textarea>
-            <button onclick="sendMail()">SEND MESSAGE</button>
+            <input type="text" id="cName" placeholder="Your Full Name *">
+            <input type="email" id="cEmail" placeholder="Your Email Address *">
+            <input type="text" id="cSubject" placeholder="Subject (optional)">
+            <textarea id="cMessage" rows="4" placeholder="Write your message here... *"></textarea>
+            <button class="btn-send" onclick="sendMail()">📨 Send Message</button>
+        </div>
+
+        <hr>
+        <div style="text-align: center; margin-top: 15px; font-size: 13px; color: #5f7f9c;">
+            📍 Office hours: Sunday-Thursday 9AM - 5PM (GMT+2)
         </div>
     </div>
 </div>
@@ -94,8 +372,10 @@
 <script>
     function checkUser() {
         var name = localStorage.getItem("user_name");
-        if (name != null) {
-            document.getElementById("welcomeMsg").innerHTML = "Welcome Back, " + name + "!";
+        if (name != null && name != "") {
+            document.getElementById("welcomeMsg").innerHTML = "✨ Welcome Back, " + name + "! ✨";
+        } else {
+            document.getElementById("welcomeMsg").innerHTML = "👋 Hello Guest! Please register.";
         }
     }
 
@@ -110,26 +390,47 @@
     }
 
     function sendMail() {
-        var n = document.getElementById("cName");
-        var e = document.getElementById("cEmail");
-        var m = document.getElementById("cMessage");
+        var nameField = document.getElementById("cName");
+        var emailField = document.getElementById("cEmail");
+        var msgField = document.getElementById("cMessage");
+        var subjectField = document.getElementById("cSubject");
 
-        // Reset borders
-        n.classList.remove("error-field");
-        e.classList.remove("error-field");
-        m.classList.remove("error-field");
+        // reset errors
+        nameField.classList.remove("error-field");
+        emailField.classList.remove("error-field");
+        msgField.classList.remove("error-field");
 
-        if(n.value == "" || e.value == "" || m.value == "") {
-            if(n.value == "") n.classList.add("error-field");
-            if(e.value == "") e.classList.add("error-field");
-            if(m.value == "") m.classList.add("error-field");
-            alert("Please fill all fields to send your message!");
+        let hasError = false;
+        if (nameField.value.trim() === "") {
+            nameField.classList.add("error-field");
+            hasError = true;
+        }
+        if (emailField.value.trim() === "") {
+            emailField.classList.add("error-field");
+            hasError = true;
+        }
+        if (msgField.value.trim() === "") {
+            msgField.classList.add("error-field");
+            hasError = true;
+        }
+
+        if (hasError) {
+            alert("❌ Please fill all required fields (Name, Email, Message)!");
         } else {
-            alert("Thank you " + n.value + ", your message has been sent successfully!");
-            // Clear form
-            n.value = ""; e.value = ""; m.value = "";
+            alert("✅ Thank you " + nameField.value.trim() + "! Your message has been sent successfully. We'll reply within 24 hours.");
+            // Clear form after sending
+            nameField.value = "";
+            emailField.value = "";
+            msgField.value = "";
+            subjectField.value = "";
         }
     }
+
+    // Make sure about section is visible by default
+    window.onload = function() {
+        checkUser();
+        showAbout();  // Show about us by default
+    };
 </script>
 
 </body>
