@@ -21,7 +21,7 @@ body {
 }
 
 /* Header & Navbar */
-.header {
+.navbar-header {
     background-color: var(--color-dark);
     position: sticky;
     top: 0;
